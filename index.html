@@ -274,7 +274,6 @@
 
             </div>
 
-            <!-- Seção de Histórico -->
             <div class="history-section" id="history-section" style="display: none;">
                 <div class="section-header"><h2>📸 Histórico de Artes</h2><p>Últimas criações salvas no Google Drive</p></div>
                 <div class="history-grid" id="history-grid">
@@ -300,15 +299,14 @@
         <span id="firebase-status">✅ Salvando no Google Drive</span>
     </div>
 
-    <!-- Modal para visualizar imagem em tamanho maior -->
     <div id="image-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 10000; justify-content: center; align-items: center; cursor: pointer;">
         <img id="modal-image" style="max-width: 90%; max-height: 90%; object-fit: contain;">
         <button onclick="document.getElementById('image-modal').style.display='none'" style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.8); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-size: 1.2rem;">✕ Fechar</button>
     </div>
 
     <script>
-        // ✅ URL DO SEU GOOGLE APPS SCRIPT (JÁ CONFIGURADA)
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzgl5mJQXUGt8iTrkc3YGcA970BzkUMVk2NEvEDlicS3nazk8ph-dWMPuTzl3Z_TRU/exec";
+        // ✅ URL CORRETA DO WEB APP - JÁ ATUALIZADA!
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxmWZgxAGmh50-vSxgn6QNEh1KFTBpNoRyIGgfkus6jaroYDzFGNZx_arIqZpEdpgo/exec";
         
         function updateClock() {
             const clockEl = document.getElementById('clock');
@@ -379,7 +377,6 @@
             else display.value += val;
         };
 
-        // Canvas functions
         window.baseImage = new Image();
         const canvas = document.getElementById('preview-canvas');
         const ctx = canvas.getContext('2d');
@@ -486,7 +483,6 @@
             ctx.fillText("ALEXANDRE DAMASCENO | CRECI 106.899", 60, canvas.height - 40);
         };
 
-        // Função para salvar no Google Drive
         window.downloadAndSaveImage = async function() {
             if(!window.baseImage || !window.baseImage.src || !window.baseImage.complete) {
                 showToast("⚠️ Por favor, carregue a foto do imóvel primeiro.", true);
@@ -502,7 +498,6 @@
             const title = document.getElementById('p-title').value || "Arte sem título";
 
             try {
-                // 1. Baixar imediatamente para o computador
                 const link = document.createElement('a');
                 const fileName = `Imovel-${title.replace(/\s+/g, '-')}-${Date.now()}.png`;
                 link.download = fileName;
@@ -511,7 +506,6 @@
                 
                 showToast("✅ Imagem baixada! Enviando para o Google Drive...");
                 
-                // 2. Enviar para o Google Drive via Apps Script
                 const imagemDataURL = canvasElement.toDataURL("image/png");
                 
                 const formData = new FormData();
@@ -520,14 +514,12 @@
                 formData.append('valor', document.getElementById('p-price').value || "");
                 formData.append('descricao', document.getElementById('p-desc').value || "");
                 
-                // Envia para o Google Apps Script
                 await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: formData
                 });
                 
-                // Salvar também no localStorage para histórico rápido
                 const artRecord = {
                     id: Date.now(),
                     titulo: title,
@@ -548,7 +540,6 @@
                 
                 showToast("✅ Arte salva no Google Drive e baixada no computador!");
                 
-                // Limpar campos
                 document.getElementById('p-title').value = "";
                 document.getElementById('p-price').value = "";
                 document.getElementById('p-desc').value = "";
