@@ -102,8 +102,8 @@
     <div class="background-anim"></div>
 
     <header class="top-bar">
-        <div class="post-counter" title="Artes salvas na Nuvem">
-            <i class="fa-solid fa-cloud-arrow-up"></i> Arquivadas: <span id="post-count">0</span>
+        <div class="post-counter" title="Artes criadas">
+            <i class="fa-solid fa-image"></i> Criadas: <span id="post-count">0</span>
         </div>
         <div class="clock-widget" id="clock">00:00:00</div>
     </header>
@@ -229,7 +229,7 @@
         </section>
 
         <section id="slide-creator" class="slide">
-            <div class="section-header"><h2>Estúdio na Nuvem</h2><p>As artes geradas aqui serão salvas no seu Banco de Dados.</p></div>
+            <div class="section-header"><h2>Estúdio na Nuvem</h2><p>Gere e descarregue a sua imagem na hora!</p></div>
             <div class="creator-grid">
                 
                 <div class="panel">
@@ -245,7 +245,7 @@
                     <label style="display:block; margin-top:20px;">4. Descrição do Imóvel</label>
                     <textarea id="p-desc" rows="4" placeholder="Ex: 3 quartos sendo 1 suíte, varanda gourmet..." oninput="window.drawCanvas()"></textarea>
                     
-                    <button class="btn-primary" id="btn-save" onclick="window.downloadAndSaveImage()">SALVAR NA NUVEM E BAIXAR</button>
+                    <button class="btn-primary" id="btn-save" onclick="window.downloadAndSaveImage()">BAIXAR ARTE E SALVAR</button>
                 </div>
 
                 <div class="panel" style="display: flex; flex-direction: column; align-items: center;">
@@ -267,8 +267,7 @@
         <button class="dock-item" onclick="window.switchSlide('slide-creator', this)"><i class="fa-solid fa-cloud-arrow-up"></i><span>Estúdio</span></button>
     </nav>
 
-    <div id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Salvo na Nuvem com Sucesso!</span></div>
-
+    <div id="toast"><i class="fa-solid fa-circle-check"></i> <span id="toast-msg">Sucesso! Arte pronta.</span></div>
 
     <script>
         function updateClock() {
@@ -427,7 +426,7 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // Função Definitiva e Protegida
+        // A NOVA FUNÇÃO QUE NÃO FAZ O UTILIZADOR ESPERAR
         window.downloadAndSaveImage = async function() {
             if(!window.baseImage || !window.baseImage.src) {
                 alert("Por favor, carregue a foto do imóvel primeiro.");
@@ -436,22 +435,43 @@
 
             const btn = document.getElementById('btn-save');
             const originalText = btn.innerText;
-            btn.innerText = "⏳ A GUARDAR NA NUVEM...";
+            btn.innerText = "⏳ A GERAR IMAGEM...";
             btn.disabled = true;
 
+            const canvasElement = document.getElementById('preview-canvas');
+            const title = document.getElementById('p-title').value || "Arte";
+
             try {
-                const canvasElement = document.getElementById('preview-canvas');
-                
-                // Transforma o Canvas numa imagem de forma segura e garantida
+                // 1. AÇÃO IMEDIATA: BAIXAR PARA O SEU COMPUTADOR/NOTEBOOK!
+                // Isto acontece em menos de 1 segundo.
+                const link = document.createElement('a');
+                link.download = `Imovel-${title.replace(/\s+/g, '-')}.png`;
+                link.href = canvasElement.toDataURL("image/png");
+                link.click();
+
+                // Mostra a mensagem visual de sucesso no site
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+
+                // Atualiza contadores
+                try {
+                    postCount++;
+                    localStorage.setItem('postCount', postCount);
+                    document.getElementById('post-count').textContent = postCount;
+                } catch(e) {}
+
+                // Muda o texto do botão para dizer que está tudo bem
+                btn.innerText = "✅ BAIXADO! SALVANDO CÓPIA NA NUVEM...";
+
+                // 2. AÇÃO EM SEGUNDO PLANO: TENTAR SALVAR NA NUVEM
+                // Você não precisa esperar isso terminar para fazer outra arte!
                 const blob = await new Promise((resolve) => canvasElement.toBlob(resolve, 'image/png'));
-                
-                // 1. Tenta gravar no Firebase
                 const filename = `artes/imovel_${Date.now()}.png`;
                 const storageRef = ref(storage, filename);
                 await uploadBytes(storageRef, blob);
                 const downloadURL = await getDownloadURL(storageRef);
 
-                const title = document.getElementById('p-title').value || "Sem Título";
                 const price = document.getElementById('p-price').value || "";
                 const desc = document.getElementById('p-desc').value || "";
 
@@ -463,42 +483,14 @@
                     dataCriacao: serverTimestamp()
                 });
 
-                // 2. Se a gravação der certo, baixa para o celular
-                const link = document.createElement('a');
-                link.download = `Arte-${title.replace(/\s+/g, '-')}.png`;
-                link.href = canvasElement.toDataURL("image/png");
-                link.click();
-
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 3000);
-
-                btn.innerText = "GUARDADO! FAZER NOVA ARTE";
+                // Se a nuvem der certo, o botão volta ao normal logo.
+                btn.innerText = originalText;
                 btn.disabled = false;
-                
-                try {
-                    postCount++;
-                    localStorage.setItem('postCount', postCount);
-                    document.getElementById('post-count').textContent = postCount;
-                } catch(e) {}
-
-                setTimeout(() => { btn.innerText = originalText; }, 3000);
 
             } catch (error) {
-                // 3. SE ALGO FALHAR, AVISA, MAS BAIXA A FOTO NA MESMA
-                console.error("Erro no Firebase: ", error);
-                
-                // Mostra um aviso claro do que falhou
-                alert("Ocorreu um erro de ligação à Nuvem.\n\nMas não se preocupe! A sua arte será descarregada na mesma para o seu telemóvel.");
-                
-                // Força o download da imagem mesmo sem nuvem
-                const canvasElement = document.getElementById('preview-canvas');
-                const link = document.createElement('a');
-                link.download = `Arte-Recuperada.png`;
-                link.href = canvasElement.toDataURL("image/png");
-                link.click();
-
-                // Destrava o botão para poder tentar de novo
+                console.error("Erro na Nuvem: ", error);
+                // Se a nuvem falhar (demorar muito), o botão simplesmente volta ao normal. 
+                // VOCÊ JÁ TEM A SUA FOTO GARANTIDA.
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
