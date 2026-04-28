@@ -4,49 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alexandre | Painel de Links</title>
-
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#f5f0eb">
+  <meta name="theme-color" content="#b0b4b8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Meus Links">
   <link rel="apple-touch-icon" href="icon-192.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Jost:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #f7f4f0;
-      --bg2: #eeeae4;
-      --surface: #ffffff;
-      --border: rgba(0,0,0,0.08);
-      --border2: rgba(0,0,0,0.04);
       --gold: #b8955a;
       --gold-light: #d4b483;
-      --text: #1a1714;
-      --muted: #9a9088;
-      --shadow: rgba(0,0,0,0.06);
-      --shadow2: rgba(0,0,0,0.12);
+      --text: #1c1c1e;
+      --text-light: #3a3a3c;
+      --muted: #5a5a60;
+      --card-bg: rgba(255,255,255,0.82);
+      --card-border: rgba(255,255,255,0.9);
+      --card-shadow: rgba(0,0,0,0.18);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Jost', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
+      font-family: 'Jost', sans-serif;
+      color: var(--text);
+      /* Cinza metálico com gradiente de profundidade */
+      background:
+        linear-gradient(160deg,
+          #d2d4d6 0%,
+          #b8bbbf 15%,
+          #a8abaf 30%,
+          #bbbec2 45%,
+          #a2a5a9 60%,
+          #b5b8bc 75%,
+          #c8cacc 90%,
+          #b0b3b7 100%
+        );
+      background-attachment: fixed;
     }
 
+    /* Reflexo metálico */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 50% at 0% 0%, rgba(184,149,90,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 100% 100%, rgba(184,149,90,0.05) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 40% at 50% 0%, rgba(255,255,255,0.28) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 30% at 20% 60%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 20% at 80% 40%, rgba(0,0,0,0.06) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
@@ -54,51 +63,51 @@
     .container {
       position: relative;
       z-index: 1;
-      max-width: 860px;
+      max-width: 880px;
       margin: 0 auto;
-      padding: 52px 24px 80px;
+      padding: 48px 24px 80px;
     }
 
+    /* ── HEADER ── */
     header {
       text-align: center;
-      margin-bottom: 44px;
+      margin-bottom: 40px;
     }
 
     .monogram {
-      width: 64px;
-      height: 64px;
+      width: 68px;
+      height: 68px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      box-shadow: 0 4px 20px rgba(184,149,90,0.25);
+      margin: 0 auto 18px;
+      box-shadow: 0 4px 20px rgba(184,149,90,0.35), 0 1px 0 rgba(255,255,255,0.4) inset;
     }
 
     .monogram span {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 600;
       color: #fff;
-      letter-spacing: 0.02em;
     }
 
     header h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 300;
       letter-spacing: 0.14em;
       color: var(--text);
       text-transform: uppercase;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.4);
     }
 
     header p {
-      font-family: 'Jost', sans-serif;
       font-size: 10px;
       font-weight: 300;
       color: var(--muted);
-      margin-top: 6px;
+      margin-top: 5px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
     }
@@ -108,82 +117,80 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      margin: 18px auto 0;
+      margin: 16px auto 0;
     }
 
-    .divider::before,
-    .divider::after {
+    .divider::before, .divider::after {
       content: '';
-      width: 40px;
+      width: 36px;
       height: 1px;
       background: linear-gradient(90deg, transparent, var(--gold));
     }
 
-    .divider::after {
-      background: linear-gradient(90deg, var(--gold), transparent);
-    }
+    .divider::after { background: linear-gradient(90deg, var(--gold), transparent); }
 
     .divider-diamond {
-      width: 5px;
-      height: 5px;
+      width: 5px; height: 5px;
       background: var(--gold);
       transform: rotate(45deg);
     }
 
+    /* ── CLOCK ── */
     .clock {
       text-align: center;
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
     .clock-time {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 58px;
+      font-size: 56px;
       font-weight: 400;
       color: var(--text);
       letter-spacing: 0.04em;
       line-height: 1;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.35);
     }
 
     .clock-date {
-      font-family: 'Jost', sans-serif;
       font-size: 10px;
       font-weight: 300;
       color: var(--muted);
-      margin-top: 8px;
+      margin-top: 6px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
     }
 
-    .search-wrap {
-      margin-bottom: 40px;
-    }
+    /* ── SEARCH ── */
+    .search-wrap { margin-bottom: 36px; }
 
     .search-wrap input {
       width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 13px 20px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.85);
+      border-radius: 10px;
+      padding: 12px 20px;
       color: var(--text);
       font-family: 'Jost', sans-serif;
       font-size: 13px;
       font-weight: 300;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       outline: none;
-      transition: border-color 0.3s, box-shadow 0.3s;
-      box-shadow: 0 2px 8px var(--shadow);
+      transition: all 0.3s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12), 0 1px 0 rgba(255,255,255,0.6) inset;
+      backdrop-filter: blur(8px);
     }
 
     .search-wrap input::placeholder { color: var(--muted); }
     .search-wrap input:focus {
+      background: rgba(255,255,255,0.88);
       border-color: var(--gold-light);
-      box-shadow: 0 2px 16px rgba(184,149,90,0.12);
+      box-shadow: 0 2px 20px rgba(184,149,90,0.2), 0 1px 0 rgba(255,255,255,0.6) inset;
     }
 
-    .category { margin-bottom: 36px; }
+    /* ── CATEGORY ── */
+    .category { margin-bottom: 32px; }
 
     .cat-label {
-      font-family: 'Jost', sans-serif;
       font-size: 9px;
       font-weight: 500;
       letter-spacing: 0.24em;
@@ -192,89 +199,103 @@
       margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.3);
     }
 
     .cat-label::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, var(--border), transparent);
+      background: linear-gradient(90deg, rgba(184,149,90,0.4), transparent);
     }
 
+    /* ── GRID ── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
     }
 
     .grid.wide {
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 
+    /* ── APP CARD ── */
     .link-card {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 13px 15px;
+      justify-content: center;
+      gap: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px 12px 16px;
       text-decoration: none;
       color: var(--text);
-      transition: all 0.25s ease;
+      transition: all 0.22s ease;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 2px 8px var(--shadow);
+      box-shadow:
+        0 4px 16px var(--card-shadow),
+        0 1px 0 rgba(255,255,255,0.7) inset;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      min-height: 100px;
     }
 
     .link-card::before {
       content: '';
       position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--gold), var(--gold-light));
-      opacity: 0;
-      transition: opacity 0.25s;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
     }
 
     .link-card:hover {
-      border-color: rgba(184,149,90,0.25);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px var(--shadow2);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22), 0 1px 0 rgba(255,255,255,0.8) inset;
+      border-color: rgba(255,255,255,0.95);
     }
 
-    .link-card:hover::before { opacity: 1; }
-    .link-card:active { transform: translateY(0); }
+    .link-card:active {
+      transform: translateY(-1px) scale(0.99);
+    }
 
     .icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 3px;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 22px;
       flex-shrink: 0;
-      background: var(--bg2);
+      background: rgba(255,255,255,0.6);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     .link-name {
-      font-family: 'Jost', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: var(--text);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      width: 100%;
     }
 
     .link-sub {
       font-size: 10px;
       font-weight: 300;
       color: var(--muted);
-      margin-top: 2px;
-      letter-spacing: 0.03em;
+      margin-top: -6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
     }
 
     .link-card.hidden { display: none; }
@@ -299,140 +320,171 @@
     <input type="text" id="search" placeholder="⌕  Buscar link..." oninput="filterLinks(this.value)">
   </div>
 
+  <!-- TRABALHO -->
   <div class="category">
     <div class="cat-label">Trabalho Imobiliário</div>
     <div class="grid wide">
       <a class="link-card" href="https://aeaimoveis.inforcedata.com.br" target="_blank" data-name="Inforce CRM">
         <div class="icon">🏢</div>
-        <div><div class="link-name">Inforce CRM</div><div class="link-sub">aeaimoveis</div></div>
+        <div class="link-name">Inforce CRM</div>
+        <div class="link-sub">aeaimoveis</div>
       </a>
       <a class="link-card" href="https://www.orulo.com.br" target="_blank" data-name="Órulo Portal">
         <div class="icon">🏗️</div>
-        <div><div class="link-name">Órulo</div><div class="link-sub">Portal de imóveis</div></div>
+        <div class="link-name">Órulo</div>
+        <div class="link-sub">Portal de imóveis</div>
       </a>
       <a class="link-card" href="https://app.asana.com" target="_blank" data-name="Asana tarefas">
         <div class="icon">📋</div>
-        <div><div class="link-name">Asana</div><div class="link-sub">Tarefas & CRM</div></div>
+        <div class="link-name">Asana</div>
+        <div class="link-sub">Tarefas & CRM</div>
       </a>
       <a class="link-card" href="https://www.lopesnet.com.br" target="_blank" data-name="Lopes Rio">
         <div class="icon">🔑</div>
-        <div><div class="link-name">Lopes Rio</div><div class="link-sub">Portal interno</div></div>
+        <div class="link-name">Lopes Rio</div>
+        <div class="link-sub">Portal interno</div>
       </a>
     </div>
   </div>
 
+  <!-- INCORPORADORAS -->
   <div class="category">
     <div class="cat-label">Incorporadoras & Lançamentos</div>
     <div class="grid wide">
       <a class="link-card" href="https://www.calper.com.br" target="_blank" data-name="Calper incorporadora">
         <div class="icon">🏛️</div>
-        <div><div class="link-name">Calper</div><div class="link-sub">Incorporadora</div></div>
+        <div class="link-name">Calper</div>
+        <div class="link-sub">Incorporadora</div>
       </a>
       <a class="link-card" href="https://www.btgpactual.com" target="_blank" data-name="BTG Pactual">
         <div class="icon">🏦</div>
-        <div><div class="link-name">BTG Pactual</div><div class="link-sub">Incorporadora</div></div>
+        <div class="link-name">BTG Pactual</div>
+        <div class="link-sub">Incorporadora</div>
       </a>
       <a class="link-card" href="https://www.opportunity.com.br" target="_blank" data-name="Opportunity incorporadora">
         <div class="icon">🏢</div>
-        <div><div class="link-name">Opportunity</div><div class="link-sub">Incorporadora</div></div>
+        <div class="link-name">Opportunity</div>
+        <div class="link-sub">Incorporadora</div>
       </a>
     </div>
   </div>
 
+  <!-- REDES SOCIAIS -->
   <div class="category">
     <div class="cat-label">Redes Sociais</div>
     <div class="grid">
       <a class="link-card" href="https://www.instagram.com/alexandredamasceno.corretor" target="_blank" data-name="Instagram trabalho corretor">
         <div class="icon">📸</div>
-        <div><div class="link-name">Instagram</div><div class="link-sub">@corretor</div></div>
+        <div class="link-name">Instagram</div>
+        <div class="link-sub">@corretor</div>
       </a>
       <a class="link-card" href="https://www.instagram.com/alexandre.d.nascimento" target="_blank" data-name="Instagram pessoal">
         <div class="icon">🤳</div>
-        <div><div class="link-name">Instagram</div><div class="link-sub">@pessoal</div></div>
+        <div class="link-name">Instagram</div>
+        <div class="link-sub">@pessoal</div>
       </a>
       <a class="link-card" href="https://www.facebook.com/alexandre.damasceno.nascimento" target="_blank" data-name="Facebook pessoal">
         <div class="icon">👤</div>
-        <div><div class="link-name">Facebook</div><div class="link-sub">Pessoal</div></div>
+        <div class="link-name">Facebook</div>
+        <div class="link-sub">Pessoal</div>
       </a>
       <a class="link-card" href="https://www.facebook.com" target="_blank" data-name="Facebook trabalho">
         <div class="icon">📘</div>
-        <div><div class="link-name">Facebook</div><div class="link-sub">Trabalho</div></div>
+        <div class="link-name">Facebook</div>
+        <div class="link-sub">Trabalho</div>
       </a>
       <a class="link-card" href="https://www.tiktok.com/@alexandrecorretor106899" target="_blank" data-name="TikTok corretor">
         <div class="icon">🎵</div>
-        <div><div class="link-name">TikTok</div><div class="link-sub">@corretor106899</div></div>
+        <div class="link-name">TikTok</div>
+        <div class="link-sub">@corretor106899</div>
       </a>
       <a class="link-card" href="https://web.whatsapp.com" target="_blank" data-name="WhatsApp Web">
         <div class="icon">💬</div>
-        <div><div class="link-name">WhatsApp</div><div class="link-sub">Web</div></div>
+        <div class="link-name">WhatsApp</div>
+        <div class="link-sub">Web</div>
       </a>
     </div>
   </div>
 
+  <!-- IA -->
   <div class="category">
     <div class="cat-label">Inteligência Artificial</div>
     <div class="grid">
       <a class="link-card" href="https://claude.ai" target="_blank" data-name="Claude IA Anthropic">
         <div class="icon">🧠</div>
-        <div><div class="link-name">Claude</div><div class="link-sub">Anthropic</div></div>
+        <div class="link-name">Claude</div>
+        <div class="link-sub">Anthropic</div>
       </a>
       <a class="link-card" href="https://chatgpt.com" target="_blank" data-name="ChatGPT OpenAI">
         <div class="icon">💡</div>
-        <div><div class="link-name">ChatGPT</div><div class="link-sub">OpenAI</div></div>
+        <div class="link-name">ChatGPT</div>
+        <div class="link-sub">OpenAI</div>
       </a>
       <a class="link-card" href="https://gemini.google.com" target="_blank" data-name="Gemini Google IA">
         <div class="icon">✨</div>
-        <div><div class="link-name">Gemini</div><div class="link-sub">Google</div></div>
+        <div class="link-name">Gemini</div>
+        <div class="link-sub">Google</div>
       </a>
       <a class="link-card" href="https://chat.deepseek.com" target="_blank" data-name="DeepSeek IA">
         <div class="icon">🔬</div>
-        <div><div class="link-name">DeepSeek</div><div class="link-sub">IA</div></div>
+        <div class="link-name">DeepSeek</div>
+        <div class="link-sub">IA</div>
       </a>
     </div>
   </div>
 
+  <!-- CRIAÇÃO -->
   <div class="category">
     <div class="cat-label">Criação & Design</div>
     <div class="grid">
       <a class="link-card" href="https://www.canva.com" target="_blank" data-name="Canva design gráfico">
         <div class="icon">🎨</div>
-        <div><div class="link-name">Canva</div><div class="link-sub">Design</div></div>
+        <div class="link-name">Canva</div>
+        <div class="link-sub">Design</div>
       </a>
       <a class="link-card" href="https://www.capcut.com" target="_blank" data-name="CapCut video editor">
         <div class="icon">🎬</div>
-        <div><div class="link-name">CapCut</div><div class="link-sub">Editor de vídeo</div></div>
+        <div class="link-name">CapCut</div>
+        <div class="link-sub">Editor de vídeo</div>
       </a>
     </div>
   </div>
 
+  <!-- DEV & CLOUD -->
   <div class="category">
     <div class="cat-label">Dev & Cloud</div>
     <div class="grid">
       <a class="link-card" href="https://vercel.com" target="_blank" data-name="Vercel deploy hospedagem">
         <div class="icon">▲</div>
-        <div><div class="link-name">Vercel</div><div class="link-sub">Hospedagem</div></div>
+        <div class="link-name">Vercel</div>
+        <div class="link-sub">Hospedagem</div>
       </a>
       <a class="link-card" href="https://github.com" target="_blank" data-name="GitHub código repositório">
         <div class="icon">🐙</div>
-        <div><div class="link-name">GitHub</div><div class="link-sub">Repositório</div></div>
+        <div class="link-name">GitHub</div>
+        <div class="link-sub">Repositório</div>
       </a>
       <a class="link-card" href="https://mega.nz" target="_blank" data-name="Mega Drive armazenamento nuvem">
         <div class="icon">☁️</div>
-        <div><div class="link-name">MEGA</div><div class="link-sub">Armazenamento</div></div>
+        <div class="link-name">MEGA</div>
+        <div class="link-sub">Armazenamento</div>
       </a>
     </div>
   </div>
 
+  <!-- GOOGLE -->
   <div class="category">
     <div class="cat-label">Google</div>
     <div class="grid">
       <a class="link-card" href="https://mail.google.com" target="_blank" data-name="Gmail email correio">
         <div class="icon">📧</div>
-        <div><div class="link-name">Gmail</div><div class="link-sub">E-mail</div></div>
+        <div class="link-name">Gmail</div>
+        <div class="link-sub">E-mail</div>
       </a>
       <a class="link-card" href="https://drive.google.com/drive/u/0/my-drive" target="_blank" data-name="Google Drive arquivos documentos">
         <div class="icon">📂</div>
-        <div><div class="link-name">Google Drive</div><div class="link-sub">Meus arquivos</div></div>
+        <div class="link-name">Google Drive</div>
+        <div class="link-sub">Meus arquivos</div>
       </a>
     </div>
   </div>
