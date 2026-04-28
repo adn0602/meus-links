@@ -38,7 +38,6 @@
         .search-bar { width: 100%; background: var(--glass-bg); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 15px 25px; color: white; font-size: 1.2rem; backdrop-filter: blur(10px); outline: none; transition: border-color 0.3s; }
         .search-bar:focus { border-color: var(--gold-text); }
 
-        /* Aumentei o padding-bottom para a Doca nunca tapar os cartões finais */
         .main-content { max-width: 1200px; margin: 0 auto; padding: 30px; padding-bottom: 150px; position: relative; z-index: 10; }
         .slide { display: none; opacity: 0; transform: translateY(20px); }
         .slide.active { display: block; opacity: 1; transform: translateY(0); animation: fadeIn 0.4s forwards; }
@@ -72,7 +71,6 @@
 
         #preview-canvas { width: 100%; max-width: 500px; height: auto; border-radius: 15px; border: 1px solid var(--glass-border); margin-top: 15px; display: block; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-        /* A DOCA: Subi ligeiramente o "bottom" e aumentei o z-index para garantir que não some */
         .dock { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(10, 15, 25, 0.95); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; border-radius: 40px; display: flex; gap: 5px; z-index: 99999; box-shadow: 0 15px 40px rgba(0,0,0,0.8); width: 90%; max-width: 600px; justify-content: space-around; }
         .dock-item { background: transparent; border: none; outline: none; font-family: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 12px 5px; flex: 1; color: #94a3b8; cursor: pointer; transition: 0.3s; position: relative; -webkit-tap-highlight-color: transparent; }
         .dock-item * { pointer-events: none; }
@@ -84,7 +82,7 @@
         .dock-item:hover span, .dock-item.active span { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 600px) {
-             .dock { padding: 5px; width: 95%; bottom: 25px; } /* Evita colisão com barras nativas do iOS/Android */
+             .dock { padding: 5px; width: 95%; bottom: 25px; } 
              .dock-item { padding: 15px 2px 20px; }
              .dock-item i { font-size: 1.4rem; }
              .dock-item span { font-size: 0.65rem; bottom: 5px; }
@@ -273,7 +271,6 @@
 
 
     <script>
-        // Relógio blindado
         function updateClock() {
             const clockEl = document.getElementById('clock');
             if (clockEl) clockEl.textContent = new Date().toLocaleTimeString('pt-BR');
@@ -281,14 +278,12 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Contadores
         let postCount = 0;
         try {
             postCount = parseInt(localStorage.getItem('postCount') || '0');
             document.getElementById('post-count').textContent = postCount;
         } catch (error) {}
 
-        // Navegação blindada
         window.switchSlide = function(slideId, dockElement) {
             document.querySelectorAll('.slide').forEach(s => { s.style.display = 'none'; s.classList.remove('active'); });
             document.querySelectorAll('.dock-item').forEach(d => d.classList.remove('active'));
@@ -298,7 +293,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // Pesquisa
         document.getElementById('search-input').addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             const slides = document.querySelectorAll('.slide');
@@ -314,7 +308,6 @@
             }
         });
 
-        // Calculadora
         window.toggleCalc = function(event) { event.stopPropagation(); document.getElementById('calc-app').classList.toggle('show'); };
         window.calc = function(val, event) {
             event.stopPropagation();
@@ -324,12 +317,10 @@
             else display.value += val;
         };
 
-        // Canvas / Desenho da Imagem
         window.baseImage = new Image();
         const canvas = document.getElementById('preview-canvas');
         const ctx = canvas.getContext('2d');
 
-        // Tela inicial preta
         ctx.fillStyle = "#111827";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "rgba(255,255,255,0.3)";
@@ -415,11 +406,6 @@
             ctx.font = "bold 28px Segoe UI, sans-serif";
             ctx.fillText("ALEXANDRE DAMASCENO | CRECI 106.899", 60, canvas.height - 40);
         };
-
-        // Função temporária de fallback caso o Firebase demore a carregar
-        window.downloadAndSaveImage = function() {
-            alert("A conectar à base de dados segura... Tente novamente em 2 segundos.");
-        };
     </script>
 
 
@@ -428,7 +414,6 @@
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 
-        // As suas chaves intocadas
         const firebaseConfig = {
             apiKey: "AIzaSyBlN0-t5xR6V9v_u-mE3y_C5f1l5G8w_c",
             authDomain: "workspace-alexandre-damasceno.firebaseapp.com",
@@ -442,7 +427,7 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        // Substitui a função de fallback pela verdadeira e poderosa quando carrega!
+        // Função Definitiva e Protegida
         window.downloadAndSaveImage = async function() {
             if(!window.baseImage || !window.baseImage.src) {
                 alert("Por favor, carregue a foto do imóvel primeiro.");
@@ -457,59 +442,63 @@
             try {
                 const canvasElement = document.getElementById('preview-canvas');
                 
-                canvasElement.toBlob(async (blob) => {
-                    // 1. Envia Foto (Storage)
-                    const filename = `artes/imovel_${Date.now()}.png`;
-                    const storageRef = ref(storage, filename);
-                    await uploadBytes(storageRef, blob);
-                    const downloadURL = await getDownloadURL(storageRef);
+                // Transforma o Canvas numa imagem de forma segura e garantida
+                const blob = await new Promise((resolve) => canvasElement.toBlob(resolve, 'image/png'));
+                
+                // 1. Tenta gravar no Firebase
+                const filename = `artes/imovel_${Date.now()}.png`;
+                const storageRef = ref(storage, filename);
+                await uploadBytes(storageRef, blob);
+                const downloadURL = await getDownloadURL(storageRef);
 
-                    // 2. Guarda Texto (Firestore)
-                    const title = document.getElementById('p-title').value || "Sem Título";
-                    const price = document.getElementById('p-price').value || "";
-                    const desc = document.getElementById('p-desc').value || "";
+                const title = document.getElementById('p-title').value || "Sem Título";
+                const price = document.getElementById('p-price').value || "";
+                const desc = document.getElementById('p-desc').value || "";
 
-                    await addDoc(collection(db, "historico_artes"), {
-                        titulo: title,
-                        valor: price,
-                        descricao: desc,
-                        imagemUrl: downloadURL,
-                        dataCriacao: serverTimestamp()
-                    });
+                await addDoc(collection(db, "historico_artes"), {
+                    titulo: title,
+                    valor: price,
+                    descricao: desc,
+                    imagemUrl: downloadURL,
+                    dataCriacao: serverTimestamp()
+                });
 
-                    // 3. Baixa para o telemóvel
-                    const link = document.createElement('a');
-                    link.download = `Arte-${title.replace(/\s+/g, '-')}.png`;
-                    link.href = canvasElement.toDataURL("image/png");
-                    link.click();
+                // 2. Se a gravação der certo, baixa para o celular
+                const link = document.createElement('a');
+                link.download = `Arte-${title.replace(/\s+/g, '-')}.png`;
+                link.href = canvasElement.toDataURL("image/png");
+                link.click();
 
-                    const toast = document.getElementById('toast');
-                    toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 3000);
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
 
-                    btn.innerText = "GUARDADO! FAZER NOVA ARTE";
-                    btn.disabled = false;
-                    
-                    try {
-                        postCount++;
-                        localStorage.setItem('postCount', postCount);
-                        document.getElementById('post-count').textContent = postCount;
-                    } catch(e) {}
+                btn.innerText = "GUARDADO! FAZER NOVA ARTE";
+                btn.disabled = false;
+                
+                try {
+                    postCount++;
+                    localStorage.setItem('postCount', postCount);
+                    document.getElementById('post-count').textContent = postCount;
+                } catch(e) {}
 
-                    setTimeout(() => { btn.innerText = originalText; }, 3000);
-                }, 'image/png');
+                setTimeout(() => { btn.innerText = originalText; }, 3000);
 
             } catch (error) {
+                // 3. SE ALGO FALHAR, AVISA, MAS BAIXA A FOTO NA MESMA
                 console.error("Erro no Firebase: ", error);
-                alert("Ocorreu um erro ao guardar na nuvem. Mas a arte será descarregada na mesma!");
                 
-                // Em caso de falha de internet, deixa baixar a imagem à mesma!
+                // Mostra um aviso claro do que falhou
+                alert("Ocorreu um erro de ligação à Nuvem.\n\nMas não se preocupe! A sua arte será descarregada na mesma para o seu telemóvel.");
+                
+                // Força o download da imagem mesmo sem nuvem
                 const canvasElement = document.getElementById('preview-canvas');
                 const link = document.createElement('a');
                 link.download = `Arte-Recuperada.png`;
                 link.href = canvasElement.toDataURL("image/png");
                 link.click();
 
+                // Destrava o botão para poder tentar de novo
                 btn.innerText = originalText;
                 btn.disabled = false;
             }
