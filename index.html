@@ -28,7 +28,7 @@
   --text: #f0f4ff;
   --muted: #4a5568;
   --muted2: #718096;
-  --dock-w: 96px;
+  --dock-w: 72px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -39,7 +39,6 @@ body{
   background:var(--black);
   color:var(--text);
   font-family:'Space Grotesk',sans-serif;
-  font-size:16px;
 }
 
 /* ═══════════════════════════════════
@@ -72,59 +71,56 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  padding:28px 0;
-  gap:8px;
+  padding:20px 0;
+  gap:4px;
   z-index:100;
   position:relative;
 }
 
 .dock-logo{
-  width:52px;height:52px;
+  width:36px;height:36px;
   background:linear-gradient(135deg,var(--gold),var(--gold2));
-  border-radius:16px;
+  border-radius:10px;
   display:flex;align-items:center;justify-content:center;
   font-family:'Syne',sans-serif;
-  font-size:24px;font-weight:800;
+  font-size:16px;font-weight:800;
   color:#000;
-  margin-bottom:20px;
+  margin-bottom:16px;
   flex-shrink:0;
   box-shadow:0 0 20px rgba(201,168,76,0.3);
 }
 
 .dock-divider{
-  width:44px;height:1px;
+  width:32px;height:1px;
   background:var(--border);
-  margin:12px 0;
+  margin:8px 0;
 }
 
 .dock-btn{
-  width:72px;height:72px;
-  border-radius:18px;
+  width:62px;height:62px;
+  border-radius:14px;
   border:none;
   background:transparent;
   color:var(--muted2);
   cursor:pointer;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:4px;
   transition:all 0.2s;
   position:relative;
   font-family:'Space Grotesk',sans-serif;
 }
 
-.dock-btn i{font-size:1.6rem;transition:all 0.2s;}
-.dock-btn span{font-size:0.75rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;opacity:0.8;}
+.dock-btn i{font-size:1.5rem;transition:all 0.2s;}
+.dock-btn span{font-size:0.62rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;}
 
 .dock-btn:hover{
-  background:rgba(255,255,255,0.08);
+  background:rgba(255,255,255,0.05);
   color:var(--text);
-  transform:scale(1.05);
 }
 
 .dock-btn.active{
-  background:rgba(201,168,76,0.15);
+  background:rgba(201,168,76,0.12);
   color:var(--gold);
 }
 
@@ -132,7 +128,7 @@ body{
   content:'';
   position:absolute;
   left:-1px;top:50%;transform:translateY(-50%);
-  width:4px;height:36px;
+  width:3px;height:28px;
   background:linear-gradient(180deg,var(--gold),var(--gold2));
   border-radius:0 3px 3px 0;
 }
@@ -153,27 +149,20 @@ body{
    TOP BAR
 ═══════════════════════════════════ */
 .topbar{
-  height:64px;
+  height:56px;
   flex-shrink:0;
   background:rgba(0,0,0,0.7);
   backdrop-filter:blur(20px);
   border-bottom:1px solid var(--border);
   display:flex;
   align-items:center;
-  justify-content:space-between;
   padding:0 24px;
-  gap:20px;
-}
-
-.topbar-left{
-  display:flex;
-  align-items:center;
-  gap:20px;
+  gap:16px;
 }
 
 .topbar-title{
   font-family:'Syne',sans-serif;
-  font-size:1rem;
+  font-size:0.85rem;
   font-weight:700;
   letter-spacing:0.15em;
   text-transform:uppercase;
@@ -182,24 +171,25 @@ body{
 }
 
 .search-wrap{
+  flex:1;
   position:relative;
-  width:300px;
+  max-width:400px;
 }
 
 .search-wrap i{
   position:absolute;left:14px;top:50%;transform:translateY(-50%);
-  color:var(--muted2);font-size:1rem;
+  color:var(--muted2);font-size:0.85rem;
 }
 
 .search-input{
   width:100%;
   background:rgba(255,255,255,0.04);
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:10px 14px 10px 40px;
+  border-radius:10px;
+  padding:8px 14px 8px 36px;
   color:var(--text);
   font-family:'Space Grotesk',sans-serif;
-  font-size:0.95rem;
+  font-size:0.85rem;
   outline:none;
   transition:all 0.2s;
 }
@@ -212,33 +202,27 @@ body{
 .search-input::placeholder{color:var(--muted);}
 
 .topbar-right{
-  display:flex;align-items:center;gap:20px;
+  margin-left:auto;
+  display:flex;align-items:center;gap:16px;
   flex-shrink:0;
 }
 
 .clock{
   font-family:'Share Tech Mono',monospace;
-  font-size:1.2rem;
+  font-size:1.35rem;
   color:var(--gold2);
-  letter-spacing:0.05em;
-}
-
-.date-display{
-  font-family:'Share Tech Mono',monospace;
-  font-size:1rem;
-  color:var(--muted2);
   letter-spacing:0.05em;
 }
 
 .counter-pill{
   background:rgba(201,168,76,0.1);
   border:1px solid var(--border-gold);
-  border-radius:24px;
-  padding:6px 14px;
-  font-size:0.85rem;
+  border-radius:20px;
+  padding:4px 12px;
+  font-size:0.75rem;
   font-weight:600;
   color:var(--gold);
-  display:flex;align-items:center;gap:8px;
+  display:flex;align-items:center;gap:6px;
 }
 
 /* ═══════════════════════════════════
@@ -248,13 +232,13 @@ body{
   flex:1;
   overflow-y:auto;
   overflow-x:hidden;
-  padding:32px 32px 48px;
+  padding:28px 28px 40px;
   scroll-behavior:smooth;
 }
 
-.content::-webkit-scrollbar{width:6px;}
+.content::-webkit-scrollbar{width:4px;}
 .content::-webkit-scrollbar-track{background:transparent;}
-.content::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px;}
+.content::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
 
 /* ═══════════════════════════════════
    SLIDES
@@ -274,17 +258,15 @@ body{
    SECTION HEADER
 ═══════════════════════════════════ */
 .section-head{
-  margin-bottom:28px;
-  padding-bottom:20px;
+  margin-bottom:24px;
+  padding-bottom:16px;
   border-bottom:1px solid var(--border);
   display:flex;align-items:flex-end;justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
 }
 
 .section-head h2{
   font-family:'Syne',sans-serif;
-  font-size:2rem;
+  font-size:1.9rem;
   font-weight:800;
   letter-spacing:-0.02em;
   color:var(--text);
@@ -293,20 +275,20 @@ body{
 .section-head p{
   font-size:0.95rem;
   color:var(--muted2);
-  margin-top:5px;
+  margin-top:3px;
   letter-spacing:0.04em;
 }
 
 .section-tag{
-  font-size:0.75rem;
+  font-size:0.65rem;
   font-weight:700;
   letter-spacing:0.15em;
   text-transform:uppercase;
   color:var(--gold);
   background:rgba(201,168,76,0.1);
   border:1px solid var(--border-gold);
-  padding:6px 14px;
-  border-radius:24px;
+  padding:4px 10px;
+  border-radius:20px;
 }
 
 /* ═══════════════════════════════════
@@ -314,12 +296,12 @@ body{
 ═══════════════════════════════════ */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
+  gap:16px;
 }
 
 .grid.compact{
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
 }
 
 /* ═══════════════════════════════════
@@ -328,8 +310,8 @@ body{
 .app-card{
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:20px;
-  padding:24px 16px 20px;
+  border-radius:18px;
+  padding:24px 14px 20px;
   text-decoration:none;
   display:flex;flex-direction:column;
   align-items:center;text-align:center;
@@ -362,36 +344,36 @@ body{
 .app-card.span2{grid-column:span 2;}
 
 .card-ico{
-  width:56px;height:56px;
+  width:62px;height:62px;
   border-radius:16px;
   background:rgba(255,255,255,0.06);
   display:flex;align-items:center;justify-content:center;
-  font-size:1.8rem;
+  font-size:2rem;
   overflow:hidden;
   flex-shrink:0;
 }
 
-.card-ico img{width:32px;height:32px;object-fit:contain;border-radius:8px;}
-.card-ico i{font-size:1.8rem;}
+.card-ico img{width:38px;height:38px;object-fit:contain;border-radius:8px;}
+.card-ico i{font-size:1.9rem;}
 
 .card-name{
-  font-size:0.95rem;
+  font-size:1rem;
   font-weight:600;
   letter-spacing:0.01em;
   color:var(--text);
-  line-height:1.3;
+  line-height:1.2;
 }
 
 .card-sub{
-  font-size:0.8rem;
+  font-size:0.82rem;
   color:var(--muted2);
   margin-top:-2px;
 }
 
 .badge{
-  position:absolute;top:12px;right:12px;
-  font-size:0.7rem;font-weight:700;
-  padding:4px 8px;border-radius:12px;
+  position:absolute;top:10px;right:10px;
+  font-size:0.6rem;font-weight:700;
+  padding:3px 7px;border-radius:10px;
   text-transform:uppercase;letter-spacing:0.05em;
 }
 
@@ -404,19 +386,19 @@ body{
 .panel{
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:20px;
-  padding:28px;
+  border-radius:16px;
+  padding:22px;
 }
 
 .panel-title{
   font-family:'Syne',sans-serif;
   font-size:0.9rem;
   font-weight:700;
-  letter-spacing:0.15em;
+  letter-spacing:0.12em;
   text-transform:uppercase;
   color:var(--gold);
-  margin-bottom:20px;
-  display:flex;align-items:center;gap:10px;
+  margin-bottom:18px;
+  display:flex;align-items:center;gap:8px;
 }
 
 .panel-title::after{
@@ -427,13 +409,13 @@ body{
 /* ═══════════════════════════════════
    FORM ELEMENTS
 ═══════════════════════════════════ */
-.field{margin-bottom:20px;}
+.field{margin-bottom:16px;}
 
 .field label{
   display:block;
-  font-size:0.8rem;
+  font-size:0.85rem;
   font-weight:600;
-  letter-spacing:0.12em;
+  letter-spacing:0.1em;
   text-transform:uppercase;
   color:var(--muted2);
   margin-bottom:8px;
@@ -443,7 +425,7 @@ input[type=text],input[type=file],textarea,select{
   width:100%;
   background:rgba(0,0,0,0.4);
   border:1px solid var(--border);
-  border-radius:12px;
+  border-radius:10px;
   padding:13px 16px;
   color:var(--text);
   font-family:'Space Grotesk',sans-serif;
@@ -464,16 +446,16 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
    EMOJI BAR
 ═══════════════════════════════════ */
 .emoji-bar{
-  display:flex;flex-wrap:wrap;gap:8px;
-  margin-bottom:16px;
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:14px;
 }
 
 .emoji-btn{
   background:rgba(255,255,255,0.05);
   border:1px solid var(--border);
-  border-radius:10px;
-  padding:6px 11px;
-  font-size:1.2rem;
+  border-radius:8px;
+  padding:5px 9px;
+  font-size:1rem;
   cursor:pointer;
   transition:all 0.15s;
   color:white;
@@ -489,18 +471,18 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
    TEMPLATES
 ═══════════════════════════════════ */
 .template-list{
-  display:flex;flex-direction:column;gap:10px;
-  margin-bottom:20px;
+  display:flex;flex-direction:column;gap:8px;
+  margin-bottom:16px;
 }
 
 .tpl-btn{
   background:rgba(0,0,0,0.3);
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:14px 16px;
+  border-radius:10px;
+  padding:12px 14px;
   color:var(--text);
   font-family:'Space Grotesk',sans-serif;
-  font-size:0.9rem;
+  font-size:0.82rem;
   cursor:pointer;
   text-align:left;
   transition:all 0.2s;
@@ -513,11 +495,11 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 
 .tpl-btn strong{
   display:block;
-  font-size:0.75rem;
+  font-size:0.68rem;
   letter-spacing:0.1em;
   text-transform:uppercase;
   color:var(--gold);
-  margin-bottom:4px;
+  margin-bottom:2px;
 }
 
 /* ═══════════════════════════════════
@@ -525,20 +507,20 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 ═══════════════════════════════════ */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;
-  gap:10px;
+  gap:8px;
   border:none;cursor:pointer;
   font-family:'Space Grotesk',sans-serif;
   font-weight:600;
   letter-spacing:0.04em;
   transition:all 0.2s;
-  border-radius:14px;
+  border-radius:12px;
 }
 
 .btn-gold{
   background:linear-gradient(135deg,var(--gold),var(--gold2));
   color:#000;
-  padding:15px 24px;
-  font-size:0.95rem;
+  padding:15px 20px;
+  font-size:1rem;
   width:100%;
   margin-top:12px;
   box-shadow:0 4px 16px rgba(201,168,76,0.2);
@@ -553,18 +535,18 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
   background:rgba(59,130,246,0.15);
   border:1px solid rgba(59,130,246,0.3);
   color:var(--blue2);
-  padding:12px 20px;
-  font-size:0.9rem;
+  padding:10px 16px;
+  font-size:0.8rem;
   width:100%;
-  margin-top:10px;
+  margin-top:8px;
 }
 
 .btn-blue:hover{background:rgba(59,130,246,0.25);}
 
 .btn-sm{
-  padding:9px 18px;
-  font-size:0.85rem;
-  border-radius:10px;
+  padding:7px 14px;
+  font-size:0.75rem;
+  border-radius:8px;
 }
 
 /* ═══════════════════════════════════
@@ -572,62 +554,62 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 ═══════════════════════════════════ */
 .fb-preview{
   background:#fff;
-  border-radius:14px;
+  border-radius:12px;
   overflow:hidden;
   color:#1c1e21;
   font-family:'Space Grotesk',sans-serif;
 }
 
 .fb-head{
-  display:flex;align-items:center;gap:12px;
-  padding:14px 16px;
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px;
   border-bottom:1px solid #e4e6ea;
 }
 
 .fb-avatar{
-  width:44px;height:44px;border-radius:50%;
+  width:38px;height:38px;border-radius:50%;
   background:linear-gradient(135deg,var(--gold),var(--gold2));
   display:flex;align-items:center;justify-content:center;
-  font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#000;
+  font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#000;
 }
 
-.fb-uname{font-size:15px;font-weight:700;color:#050505;}
-.fb-sub{font-size:12px;color:#65676b;}
+.fb-uname{font-size:14px;font-weight:700;color:#050505;}
+.fb-sub{font-size:11px;color:#65676b;}
 .fb-body{
-  padding:14px 16px;
-  font-size:15px;line-height:1.5;
+  padding:12px 14px;
+  font-size:14px;line-height:1.5;
   white-space:pre-wrap;word-break:break-word;
-  min-height:60px;color:#050505;
+  min-height:50px;color:#050505;
 }
 
-.fb-img-wrap img{width:100%;max-height:280px;object-fit:cover;display:block;}
+.fb-img-wrap img{width:100%;max-height:260px;object-fit:cover;display:block;}
 
 .fb-actions{
-  padding:10px 16px;
+  padding:8px 14px;
   border-top:1px solid #e4e6ea;
-  display:flex;gap:16px;
+  display:flex;gap:14px;
 }
 
-.fb-action{font-size:13px;color:#65676b;display:flex;align-items:center;gap:6px;}
+.fb-action{font-size:12px;color:#65676b;display:flex;align-items:center;gap:4px;}
 
 /* ═══════════════════════════════════
    GROUPS CHECKLIST
 ═══════════════════════════════════ */
 .groups-list{
-  display:flex;flex-direction:column;gap:8px;
-  max-height:260px;overflow-y:auto;
-  padding-right:6px;
+  display:flex;flex-direction:column;gap:6px;
+  max-height:220px;overflow-y:auto;
+  padding-right:4px;
 }
 
-.groups-list::-webkit-scrollbar{width:4px;}
+.groups-list::-webkit-scrollbar{width:3px;}
 .groups-list::-webkit-scrollbar-thumb{background:var(--border);}
 
 .group-row{
-  display:flex;align-items:center;gap:12px;
+  display:flex;align-items:center;gap:10px;
   background:rgba(0,0,0,0.2);
   border:1px solid var(--border);
-  border-radius:10px;
-  padding:11px 14px;
+  border-radius:8px;
+  padding:9px 12px;
   cursor:pointer;
   transition:all 0.15s;
 }
@@ -636,14 +618,14 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 .group-row.done{background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.2);}
 
 .group-row input[type=checkbox]{
-  width:18px;height:18px;
+  width:15px;height:15px;
   accent-color:var(--gold);
   flex-shrink:0;
   cursor:pointer;
 }
 
 .group-row label{
-  font-size:0.9rem;color:var(--text);
+  font-size:0.8rem;color:var(--text);
   letter-spacing:0;text-transform:none;
   margin:0;cursor:pointer;font-weight:400;
   flex:1;
@@ -652,7 +634,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 .group-row.done label{text-decoration:line-through;color:var(--muted2);}
 
 .group-add-row{
-  display:flex;gap:10px;margin-top:14px;
+  display:flex;gap:8px;margin-top:10px;
 }
 
 .group-add-row input{flex:1;}
@@ -663,14 +645,14 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 .creator-layout{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:24px;
+  gap:20px;
 }
 
 @media(max-width:800px){.creator-layout{grid-template-columns:1fr;}}
 
 #preview-canvas{
   width:100%;
-  border-radius:14px;
+  border-radius:12px;
   border:1px solid var(--border);
   display:block;
   background:#111;
@@ -678,16 +660,16 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 
 .history-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:14px;
-  margin-top:20px;
-  max-height:400px;
+  grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+  gap:12px;
+  margin-top:16px;
+  max-height:360px;
   overflow-y:auto;
 }
 
 .history-item{
   background:rgba(0,0,0,0.4);
-  border-radius:12px;
+  border-radius:10px;
   overflow:hidden;
   cursor:pointer;
   border:1px solid var(--border);
@@ -699,8 +681,8 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
   transform:scale(1.03);
 }
 
-.history-item img{width:100%;height:130px;object-fit:cover;display:block;}
-.history-item p{padding:10px;font-size:0.8rem;text-align:center;color:var(--muted2);}
+.history-item img{width:100%;height:120px;object-fit:cover;display:block;}
+.history-item p{padding:8px;font-size:0.72rem;text-align:center;color:var(--muted2);}
 
 /* ═══════════════════════════════════
    CALCULADORA
@@ -708,18 +690,18 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 .calc-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  margin-top:14px;
+  gap:6px;
+  margin-top:10px;
 }
 
 .calc-btn{
   background:rgba(255,255,255,0.06);
   border:1px solid var(--border);
-  border-radius:10px;
+  border-radius:8px;
   color:var(--text);
   font-family:'Share Tech Mono',monospace;
-  font-size:1.1rem;
-  padding:14px;
+  font-size:1.2rem;
+  padding:15px;
   cursor:pointer;
   transition:all 0.15s;
 }
@@ -732,11 +714,11 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 #calc-display{
   background:rgba(0,0,0,0.5);
   border:1px solid var(--border);
-  border-radius:12px;
-  padding:16px 20px;
+  border-radius:10px;
+  padding:16px 18px;
   color:var(--gold2);
   font-family:'Share Tech Mono',monospace;
-  font-size:1.6rem;
+  font-size:1.7rem;
   text-align:right;
   width:100%;
   margin-bottom:10px;
@@ -748,17 +730,17 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 ═══════════════════════════════════ */
 .links-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:14px;
 }
 
 .link-panel{
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:16px;
-  padding:26px;
+  border-radius:14px;
+  padding:22px;
   display:flex;flex-direction:column;
-  align-items:center;text-align:center;gap:12px;
+  align-items:center;text-align:center;gap:10px;
   transition:all 0.2s;
 }
 
@@ -768,19 +750,20 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
   transform:translateY(-3px);
 }
 
-.link-panel i{font-size:2.2rem;}
-.link-panel h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;}
-.link-panel p{font-size:0.85rem;color:var(--muted2);line-height:1.5;}
+.link-panel i{font-size:2rem;}
+.link-panel h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;}
+.link-panel p{font-size:0.78rem;color:var(--muted2);line-height:1.4;}
 
 /* ═══════════════════════════════════
-   HOME PROFILE - SEM O LOGO GRANDE
+   HOME PROFILE
 ═══════════════════════════════════ */
 .profile-hero{
+  display:flex;align-items:center;gap:20px;
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:24px;
-  padding:32px;
-  margin-bottom:28px;
+  border-radius:18px;
+  padding:24px;
+  margin-bottom:20px;
   position:relative;
   overflow:hidden;
 }
@@ -793,38 +776,54 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
   pointer-events:none;
 }
 
+.profile-monogram{
+  width:64px;height:64px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#000;
+  box-shadow:0 0 30px rgba(201,168,76,0.25);
+}
+
 .profile-info h1{
   font-family:'Syne',sans-serif;
-  font-size:1.8rem;
-  font-weight:800;
+  font-size:1.7rem;font-weight:800;
   color:var(--text);
-  line-height:1.2;
+  line-height:1.1;
 }
 
 .profile-info p{
-  font-size:0.9rem;
-  color:var(--muted2);
-  margin-top:6px;
-  letter-spacing:0.04em;
+  font-size:0.92rem;color:var(--muted2);
+  margin-top:4px;letter-spacing:0.04em;
 }
+
+.profile-stats{
+  display:flex;gap:16px;margin-top:10px;
+}
+
+.stat{text-align:center;}
+.stat-num{
+  font-family:'Share Tech Mono',monospace;
+  font-size:1.1rem;color:var(--gold2);font-weight:700;
+}
+.stat-label{font-size:0.65rem;color:var(--muted2);letter-spacing:0.06em;text-transform:uppercase;}
 
 /* ═══════════════════════════════════
    TOAST
 ═══════════════════════════════════ */
 #toast{
-  position:fixed;bottom:28px;right:28px;
+  position:fixed;bottom:24px;right:24px;
   background:rgba(10,20,10,0.95);
   border:1px solid rgba(16,185,129,0.3);
   color:#6ee7b7;
-  padding:14px 24px;
-  border-radius:14px;
-  font-size:0.9rem;font-weight:600;
-  display:flex;align-items:center;gap:12px;
+  padding:12px 20px;
+  border-radius:12px;
+  font-size:0.85rem;font-weight:600;
+  display:flex;align-items:center;gap:10px;
   transform:translateX(120%);
   transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
   z-index:9999;
   backdrop-filter:blur(20px);
-  max-width:340px;
+  max-width:300px;
 }
 
 #toast.show{transform:translateX(0);}
@@ -843,41 +842,36 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 
 #modal.open{display:flex;}
 
-#modal img{max-width:90%;max-height:90%;border-radius:14px;}
+#modal img{max-width:90%;max-height:90%;border-radius:12px;}
 
 #modal-close{
-  position:absolute;top:24px;right:24px;
+  position:absolute;top:20px;right:20px;
   background:rgba(255,255,255,0.1);
   border:1px solid var(--border);
   color:var(--text);
-  padding:10px 20px;border-radius:10px;
+  padding:8px 16px;border-radius:8px;
   cursor:pointer;font-family:'Space Grotesk',sans-serif;
-  font-size:0.9rem;
+  font-size:0.85rem;
 }
 
 /* ═══════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════ */
 @media(max-width:600px){
-  :root{--dock-w:80px;}
-  .content{padding:20px 16px 40px;}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;}
+  :root{--dock-w:58px;}
+  .content{padding:16px 14px 40px;}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;}
   .topbar-title{display:none;}
-  .search-wrap{width:200px;}
-  .profile-hero{padding:24px;}
-  .profile-info h1{font-size:1.4rem;}
-  .section-head h2{font-size:1.6rem;}
-  .dock-btn span{font-size:0.65rem;}
-  .dock-btn i{font-size:1.3rem;}
-  .date-display{display:none;}
+  .profile-hero{flex-direction:column;text-align:center;}
+  .profile-stats{justify-content:center;}
 }
 
 /* ═══════════════════════════════════
    SCROLLBAR GLOBAL
 ═══════════════════════════════════ */
-*::-webkit-scrollbar{width:6px;height:6px;}
+*::-webkit-scrollbar{width:4px;height:4px;}
 *::-webkit-scrollbar-track{background:transparent;}
-*::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:3px;}
+*::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px;}
 </style>
 </head>
 <body>
@@ -916,26 +910,26 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
     <button class="dock-btn" onclick="go('links',this)" title="Links">
       <i class="fa-solid fa-link"></i><span>Links</span>
     </button>
+    <button class="dock-btn" onclick="go('grupos',this)" title="Grupos">
+      <i class="fa-solid fa-rocket"></i><span>Grupos</span>
+    </button>
   </nav>
 
   <!-- MAIN -->
   <div class="main">
 
-    <!-- TOPBAR com DATA e HORARIO lado direito -->
+    <!-- TOPBAR -->
     <header class="topbar">
-      <div class="topbar-left">
-        <div class="topbar-title">Workspace</div>
-        <div class="search-wrap">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input class="search-input" id="search" placeholder="Buscar links..." oninput="doSearch(this.value)">
-        </div>
+      <div class="topbar-title">Workspace</div>
+      <div class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input class="search-input" id="search" placeholder="Buscar links..." oninput="doSearch(this.value)">
       </div>
       <div class="topbar-right">
         <div class="counter-pill">
           <i class="fa-solid fa-image"></i>
           <span id="post-count">0</span> artes
         </div>
-        <div class="date-display" id="date-display">Ter 28</div>
         <div class="clock" id="clock">00:00</div>
       </div>
     </header>
@@ -943,12 +937,23 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
     <!-- CONTENT -->
     <div class="content" id="content">
 
-      <!-- ══ HOME - SEM O LOGO GRANDE ══ -->
+      <!-- ══ HOME ══ -->
       <section class="slide active" id="slide-home">
         <div class="profile-hero">
+          <div class="profile-monogram">A</div>
           <div class="profile-info">
             <h1>Alexandre Damasceno</h1>
             <p>Consultor Imobiliário · CRECI 106.899 · Lopes Rio</p>
+            <div class="profile-stats">
+              <div class="stat">
+                <div class="stat-num" id="stat-artes">0</div>
+                <div class="stat-label">Artes</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num" id="stat-data">—</div>
+                <div class="stat-label">Hoje</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1056,7 +1061,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
         </div>
       </section>
 
-      <!-- ══ ESCRITÓRIO - ÍCONE ASANA CORRIGIDO ══ -->
+      <!-- ══ ESCRITÓRIO ══ -->
       <section class="slide" id="slide-escritorio">
         <div class="section-head">
           <div><h2>Escritório</h2><p>Gestão e produtividade</p></div>
@@ -1076,9 +1081,8 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
             <div class="card-name">MEGA</div>
           </a>
           <a href="https://app.asana.com" target="_blank" class="app-card link-item" data-s="asana tarefas">
-            <div class="card-ico"><i class="fa-brands fa-asana" style="color:#f06a6a"></i></div>
+            <div class="card-ico"><i class="fa-solid fa-list-check" style="color:#f06a6a"></i></div>
             <div class="card-name">Asana</div>
-            <div class="card-sub">Tarefas</div>
           </a>
           <a href="https://www.canva.com" target="_blank" class="app-card link-item" data-s="canva design">
             <div class="card-ico"><i class="fa-solid fa-palette" style="color:#00c4cc"></i></div>
@@ -1091,10 +1095,10 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
         </div>
 
         <!-- CALCULADORA -->
-        <div class="section-head" style="margin-top:32px;">
+        <div class="section-head" style="margin-top:28px;">
           <div><h2>Calculadora</h2></div>
         </div>
-        <div class="panel" style="max-width:360px;">
+        <div class="panel" style="max-width:320px;">
           <input id="calc-display" readonly value="0">
           <div class="calc-grid">
             <button class="calc-btn cl" onclick="calcBtn('C')">C</button>
@@ -1155,7 +1159,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 
         <div class="creator-layout">
           <!-- EDITOR -->
-          <div style="display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;flex-direction:column;gap:14px;">
 
             <div class="panel">
               <div class="panel-title">📋 Templates Rápidos</div>
@@ -1207,7 +1211,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
           </div>
 
           <!-- PREVIEW + GRUPOS -->
-          <div style="display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;flex-direction:column;gap:14px;">
             <div class="panel">
               <div class="panel-title">👁️ Preview Facebook</div>
               <div class="fb-preview">
@@ -1219,7 +1223,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
                   </div>
                 </div>
                 <div id="fb-img-wrap" style="display:none">
-                  <img id="fb-prev-img" alt="" style="width:100%;max-height:260px;object-fit:cover;display:block;">
+                  <img id="fb-prev-img" alt="" style="width:100%;max-height:220px;object-fit:cover;display:block;">
                 </div>
                 <div class="fb-body" id="fb-prev-text">Seu post aparecerá aqui...</div>
                 <div class="fb-actions">
@@ -1232,7 +1236,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 
             <div class="panel">
               <div class="panel-title">📢 Checklist de Grupos</div>
-              <p style="font-size:0.85rem;color:var(--muted2);margin-bottom:14px;">Marque os grupos onde já postou</p>
+              <p style="font-size:0.75rem;color:var(--muted2);margin-bottom:12px;">Marque os grupos onde já postou</p>
               <div class="groups-list" id="groups-list">
                 <div class="group-row"><input type="checkbox" id="g1" onchange="toggleDone(this)"><label for="g1">Imóveis Barra da Tijuca RJ</label></div>
                 <div class="group-row"><input type="checkbox" id="g2" onchange="toggleDone(this)"><label for="g2">Compra e Venda de Imóveis Rio</label></div>
@@ -1244,7 +1248,7 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
                 <input type="text" id="new-grp" placeholder="Adicionar grupo...">
                 <button class="btn btn-sm btn-blue" onclick="addGroup()" style="width:auto;margin:0;flex-shrink:0">+</button>
               </div>
-              <button class="btn btn-gold" onclick="resetGroups()" style="margin-top:12px;font-size:0.85rem;padding:12px;">
+              <button class="btn btn-gold" onclick="resetGroups()" style="margin-top:10px;font-size:0.78rem;padding:10px;">
                 <i class="fa-solid fa-rotate-left"></i> Resetar Checklist
               </button>
             </div>
@@ -1289,11 +1293,11 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
           <div class="panel" style="display:flex;flex-direction:column;align-items:center;gap:12px;">
             <div class="panel-title" style="width:100%">🖼️ Visualização</div>
             <canvas id="preview-canvas" width="1080" height="1350"></canvas>
-            <p style="font-size:0.8rem;color:var(--muted2);text-align:center;">Assinatura automática: ALEXANDRE DAMASCENO | CRECI 106.899</p>
+            <p style="font-size:0.72rem;color:var(--muted2);text-align:center;">Assinatura automática: ALEXANDRE DAMASCENO | CRECI 106.899</p>
           </div>
         </div>
 
-        <div id="history-wrap" style="display:none;margin-top:24px;">
+        <div id="history-wrap" style="display:none;margin-top:20px;">
           <div class="section-head">
             <div><h2>Histórico de Artes</h2></div>
           </div>
@@ -1312,38 +1316,155 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
             <i class="fa-brands fa-github" style="color:#fff"></i>
             <h3>GitHub</h3>
             <p>Repositório de código do projeto</p>
-            <a href="https://github.com" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.85rem;padding:12px 20px;">Acessar</a>
+            <a href="https://github.com" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.78rem;padding:10px 16px;">Acessar</a>
           </div>
           <div class="link-panel">
             <i class="fa-solid fa-triangle" style="color:#fff"></i>
             <h3>Vercel</h3>
             <p>Hospedagem e deploy automático</p>
-            <a href="https://vercel.com" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.85rem;padding:12px 20px;">Acessar</a>
+            <a href="https://vercel.com" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.78rem;padding:10px 16px;">Acessar</a>
           </div>
           <div class="link-panel">
             <i class="fa-solid fa-code" style="color:#34a853"></i>
             <h3>Apps Script</h3>
             <p>Código que conecta ao Google Drive</p>
-            <a href="https://script.google.com" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.85rem;padding:12px 20px;">Acessar</a>
+            <a href="https://script.google.com" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.78rem;padding:10px 16px;">Acessar</a>
           </div>
           <div class="link-panel">
             <i class="fa-brands fa-google-drive" style="color:#fbbc04"></i>
             <h3>Pasta de Artes</h3>
             <p>Artes salvas no Google Drive</p>
-            <a href="https://drive.google.com/drive/folders/1B7hMlT17nthy23lrjee3XF_QgQQukb7V" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.85rem;padding:12px 20px;">Acessar</a>
+            <a href="https://drive.google.com/drive/folders/1B7hMlT17nthy23lrjee3XF_QgQQukb7V" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.78rem;padding:10px 16px;">Acessar</a>
           </div>
           <div class="link-panel">
             <i class="fa-solid fa-globe" style="color:var(--blue2)"></i>
             <h3>Meu Site</h3>
             <p>Site do corretor publicado</p>
-            <a href="https://site-corretor-seven.vercel.app/" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.85rem;padding:12px 20px;">Acessar</a>
+            <a href="https://site-corretor-seven.vercel.app/" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.78rem;padding:10px 16px;">Acessar</a>
           </div>
           <div class="link-panel">
             <i class="fa-solid fa-chart-line" style="color:var(--gold)"></i>
             <h3>Inforce CRM</h3>
             <p>Dashboard de vendas</p>
-            <a href="https://aeaimoveis.inforcedata.com.br" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.85rem;padding:12px 20px;">Acessar</a>
+            <a href="https://aeaimoveis.inforcedata.com.br" target="_blank" class="btn btn-gold" style="text-decoration:none;font-size:0.78rem;padding:10px 16px;">Acessar</a>
           </div>
+        </div>
+      </section>
+
+      <!-- ══ GRUPOS ══ -->
+      <section class="slide" id="slide-grupos">
+        <div class="section-head">
+          <div><h2>Fila de Grupos</h2><p>Poste em 100+ grupos rapidamente — um por vez</p></div>
+          <span class="section-tag">Grupos</span>
+        </div>
+
+        <!-- INSTRUÇÃO -->
+        <div class="panel" style="margin-bottom:20px;background:rgba(201,168,76,0.06);border-color:var(--border-gold);">
+          <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
+            <div style="display:flex;flex-direction:column;gap:8px;flex:1;min-width:200px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:0.85rem;flex-shrink:0;">1</div>
+                <span style="font-size:0.95rem;">Escreva o post na aba <strong style="color:var(--gold)">Post</strong> e copie</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:0.85rem;flex-shrink:0;">2</div>
+                <span style="font-size:0.95rem;">Clique <strong style="color:var(--gold)">Abrir Grupo</strong> — o grupo abre numa nova aba</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:0.85rem;flex-shrink:0;">3</div>
+                <span style="font-size:0.95rem;">Cole o texto + adicione a imagem + publique</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;font-weight:800;color:#000;font-size:0.85rem;flex-shrink:0;">4</div>
+                <span style="font-size:0.95rem;">Volte aqui e clique <strong style="color:var(--gold)">Feito → Próximo</strong></span>
+              </div>
+            </div>
+            <div style="background:rgba(0,0,0,0.3);border-radius:12px;padding:14px 20px;text-align:center;border:1px solid var(--border);">
+              <div style="font-family:'Share Tech Mono',monospace;font-size:2rem;color:var(--gold2);" id="grp-progress-display">0/0</div>
+              <div style="font-size:0.75rem;color:var(--muted2);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Progresso</div>
+              <div style="margin-top:10px;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden;width:120px;">
+                <div id="grp-progress-bar" style="height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px;transition:width 0.4s;width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+
+          <!-- PAINEL ESQUERDO: TEXTO + CONTROLES -->
+          <div style="display:flex;flex-direction:column;gap:14px;">
+
+            <div class="panel">
+              <div class="panel-title">📋 Texto do Post</div>
+              <textarea id="grp-text" rows="7" placeholder="Cole aqui o texto do post ou escreva diretamente..." oninput="grpUpdateText()"></textarea>
+              <div style="display:flex;gap:8px;margin-top:10px;">
+                <button class="btn btn-gold" style="flex:1;margin:0;font-size:0.85rem;padding:11px;" onclick="grpCopyText()">
+                  <i class="fa-solid fa-copy"></i> Copiar Texto
+                </button>
+                <button class="btn btn-blue" style="margin:0;padding:11px 14px;font-size:0.85rem;" onclick="grpClearText()">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- GRUPO ATUAL -->
+            <div class="panel" id="grp-current-panel" style="border-color:var(--border-gold);background:rgba(201,168,76,0.05);">
+              <div class="panel-title">🎯 Grupo Atual</div>
+              <div id="grp-current-name" style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:6px;">—</div>
+              <div id="grp-current-num" style="font-size:0.8rem;color:var(--muted2);margin-bottom:14px;">Selecione um grupo para começar</div>
+              <button class="btn btn-gold" style="margin:0;font-size:0.95rem;padding:14px;" onclick="grpOpen()" id="grp-open-btn" disabled>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Grupo no Facebook
+              </button>
+              <button class="btn" style="width:100%;margin-top:8px;padding:12px;font-size:0.9rem;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#6ee7b7;border-radius:12px;font-family:'Space Grotesk',sans-serif;font-weight:600;" onclick="grpDone()" id="grp-done-btn" disabled>
+                <i class="fa-solid fa-check"></i> Feito → Próximo Grupo
+              </button>
+            </div>
+
+          </div>
+
+          <!-- PAINEL DIREITO: LISTA DE GRUPOS -->
+          <div class="panel">
+            <div class="panel-title" style="justify-content:space-between;">
+              <span>📢 Lista de Grupos</span>
+              <span id="grp-count-badge" style="font-size:0.75rem;background:rgba(201,168,76,0.15);padding:3px 10px;border-radius:20px;color:var(--gold);">0 grupos</span>
+            </div>
+
+            <!-- ADD GRUPO -->
+            <div style="display:flex;gap:8px;margin-bottom:12px;">
+              <input type="text" id="grp-name-inp" placeholder="Nome do grupo" style="flex:1;">
+              <input type="text" id="grp-url-inp" placeholder="URL do grupo (facebook.com/groups/...)" style="flex:2;">
+            </div>
+            <button class="btn btn-blue" style="margin:0 0 14px;font-size:0.82rem;padding:9px;" onclick="grpAdd()">
+              <i class="fa-solid fa-plus"></i> Adicionar Grupo
+            </button>
+
+            <!-- IMPORT EM MASSA -->
+            <div style="margin-bottom:14px;">
+              <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:6px;">Importar vários de uma vez (1 por linha: Nome | URL)</div>
+              <textarea id="grp-bulk" rows="3" placeholder="Imóveis Barra RJ | https://facebook.com/groups/123&#10;Recreio Imóveis | https://facebook.com/groups/456"></textarea>
+              <button class="btn btn-blue" style="margin:6px 0 0;font-size:0.78rem;padding:8px;" onclick="grpBulkImport()">
+                <i class="fa-solid fa-file-import"></i> Importar Lista
+              </button>
+            </div>
+
+            <!-- LISTA -->
+            <div id="grp-list" style="display:flex;flex-direction:column;gap:6px;max-height:320px;overflow-y:auto;padding-right:4px;">
+              <div style="text-align:center;padding:20px;color:var(--muted2);font-size:0.85rem;">
+                Nenhum grupo adicionado ainda
+              </div>
+            </div>
+
+            <!-- CONTROLES GERAIS -->
+            <div style="display:flex;gap:8px;margin-top:12px;">
+              <button class="btn btn-gold" style="flex:1;margin:0;font-size:0.8rem;padding:10px;" onclick="grpStartSession()">
+                <i class="fa-solid fa-play"></i> Iniciar Sessão
+              </button>
+              <button class="btn" style="padding:10px 12px;margin:0;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);color:#fca5a5;border-radius:12px;font-family:'Space Grotesk',sans-serif;cursor:pointer;" onclick="grpReset()" title="Resetar progresso">
+                <i class="fa-solid fa-rotate-left"></i>
+              </button>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -1432,22 +1553,16 @@ input::placeholder,textarea::placeholder{color:var(--muted);}
 })();
 
 // ═══════════════════════════════════
-// CLOCK e DATA
+// CLOCK
 // ═══════════════════════════════════
 function tick(){
   const n=new Date();
   const h=String(n.getHours()).padStart(2,'0');
   const m=String(n.getMinutes()).padStart(2,'0');
   document.getElementById('clock').textContent=h+':'+m;
-  
   const days=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  const months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  const dayName=days[n.getDay()];
-  const dayNum=n.getDate();
-  const month=months[n.getMonth()];
-  document.getElementById('date-display').textContent=`${dayName} ${dayNum}`;
+  document.getElementById('stat-data').textContent=days[n.getDay()]+' '+n.getDate();
 }
-
 tick();setInterval(tick,1000);
 
 // ═══════════════════════════════════
@@ -1470,6 +1585,7 @@ function doSearch(q){
     document.querySelectorAll('.link-item').forEach(el=>el.style.display='');
     return;
   }
+  // show all slides
   document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
   document.getElementById('slide-home').classList.add('active');
   document.querySelectorAll('.link-item').forEach(el=>{
@@ -1650,6 +1766,7 @@ let postCount=0;
 
 try{postCount=parseInt(localStorage.getItem('postCount')||'0');}catch{}
 document.getElementById('post-count').textContent=postCount;
+document.getElementById('stat-artes').textContent=postCount;
 
 function initCanvas(){
   cx.fillStyle='#111827';
@@ -1755,6 +1872,7 @@ async function downloadArt(){
     localStorage.setItem('artes',JSON.stringify(hist));
     postCount++;localStorage.setItem('postCount',postCount);
     document.getElementById('post-count').textContent=postCount;
+    document.getElementById('stat-artes').textContent=postCount;
   }catch(e){toast('Arte baixada localmente.',false);}
   finally{btn.innerHTML='<i class="fa-solid fa-download"></i> Baixar Arte';btn.disabled=false;}
 }
@@ -1778,6 +1896,197 @@ function toggleHistory(){
 }
 
 function closeModal(){document.getElementById('modal').classList.remove('open');}
+
+// ═══════════════════════════════════
+// FILA DE GRUPOS
+// ═══════════════════════════════════
+let grpGroups = [];
+let grpCurrent = -1;
+let grpSession = false;
+
+// Load from localStorage
+try {
+  const saved = localStorage.getItem('grp_groups');
+  if (saved) grpGroups = JSON.parse(saved);
+  grpRenderList();
+} catch(e) {}
+
+function grpSave() {
+  try { localStorage.setItem('grp_groups', JSON.stringify(grpGroups)); } catch(e) {}
+}
+
+function grpAdd() {
+  const name = document.getElementById('grp-name-inp').value.trim();
+  const url  = document.getElementById('grp-url-inp').value.trim();
+  if (!name || !url) { toast('Preencha o nome e a URL do grupo!', true); return; }
+  if (!url.includes('facebook.com')) { toast('URL deve ser do Facebook!', true); return; }
+  grpGroups.push({ name, url, done: false });
+  grpSave(); grpRenderList();
+  document.getElementById('grp-name-inp').value = '';
+  document.getElementById('grp-url-inp').value = '';
+  toast('Grupo adicionado!');
+}
+
+function grpBulkImport() {
+  const raw = document.getElementById('grp-bulk').value.trim();
+  if (!raw) return;
+  const lines = raw.split('
+').filter(l => l.trim());
+  let added = 0;
+  lines.forEach(line => {
+    const parts = line.split('|');
+    if (parts.length >= 2) {
+      const name = parts[0].trim();
+      const url  = parts[1].trim();
+      if (name && url && url.includes('facebook.com')) {
+        grpGroups.push({ name, url, done: false });
+        added++;
+      }
+    }
+  });
+  grpSave(); grpRenderList();
+  document.getElementById('grp-bulk').value = '';
+  toast(added + ' grupos importados!');
+}
+
+function grpRenderList() {
+  const el = document.getElementById('grp-list');
+  const badge = document.getElementById('grp-count-badge');
+  badge.textContent = grpGroups.length + ' grupos';
+
+  if (!grpGroups.length) {
+    el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--muted2);font-size:0.85rem;">Nenhum grupo adicionado ainda</div>';
+    grpUpdateProgress();
+    return;
+  }
+
+  el.innerHTML = grpGroups.map((g, i) => `
+    <div style="display:flex;align-items:center;gap:8px;background:${g.done ? 'rgba(16,185,129,0.07)' : (i===grpCurrent ? 'rgba(201,168,76,0.1)' : 'rgba(0,0,0,0.2)')};border:1px solid ${g.done ? 'rgba(16,185,129,0.2)' : (i===grpCurrent ? 'var(--border-gold)' : 'var(--border)')};border-radius:9px;padding:9px 12px;transition:all 0.2s;">
+      <div style="width:22px;height:22px;border-radius:50%;background:${g.done ? 'rgba(16,185,129,0.3)' : 'rgba(255,255,255,0.06)'};display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:${g.done ? '#6ee7b7' : 'var(--muted2)'};flex-shrink:0;font-weight:700;">${g.done ? '✓' : (i+1)}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:0.85rem;font-weight:600;color:${g.done ? 'var(--muted2)' : 'var(--text)'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;${g.done ? 'text-decoration:line-through;' : ''}">${g.name}</div>
+        <div style="font-size:0.68rem;color:var(--muted2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${g.url.replace('https://','').substring(0,40)}</div>
+      </div>
+      <button onclick="grpRemove(${i})" style="background:none;border:none;color:var(--muted2);cursor:pointer;font-size:0.85rem;flex-shrink:0;padding:2px 6px;" title="Remover">✕</button>
+    </div>
+  `).join('');
+
+  grpUpdateProgress();
+}
+
+function grpRemove(i) {
+  grpGroups.splice(i, 1);
+  if (grpCurrent >= grpGroups.length) grpCurrent = grpGroups.length - 1;
+  grpSave(); grpRenderList();
+}
+
+function grpUpdateProgress() {
+  const total = grpGroups.length;
+  const done  = grpGroups.filter(g => g.done).length;
+  document.getElementById('grp-progress-display').textContent = done + '/' + total;
+  const pct = total > 0 ? (done / total * 100) : 0;
+  document.getElementById('grp-progress-bar').style.width = pct + '%';
+}
+
+function grpStartSession() {
+  if (!grpGroups.length) { toast('Adicione grupos primeiro!', true); return; }
+  // Find first not done
+  const first = grpGroups.findIndex(g => !g.done);
+  if (first === -1) { toast('Todos os grupos já foram postados! Resets para nova sessão.', true); return; }
+  grpSession = true;
+  grpCurrent = first;
+  grpSelectCurrent();
+  toast('Sessão iniciada! Clique em "Abrir Grupo".');
+}
+
+function grpSelectCurrent() {
+  if (grpCurrent < 0 || grpCurrent >= grpGroups.length) return;
+  const g = grpGroups[grpCurrent];
+  document.getElementById('grp-current-name').textContent = g.name;
+  document.getElementById('grp-current-num').textContent = 'Grupo ' + (grpCurrent + 1) + ' de ' + grpGroups.length;
+  document.getElementById('grp-open-btn').disabled = false;
+  document.getElementById('grp-done-btn').disabled = false;
+  grpRenderList();
+  // Auto copy text
+  const txt = document.getElementById('grp-text').value.trim();
+  if (txt) {
+    navigator.clipboard.writeText(txt).catch(() => {});
+  }
+}
+
+function grpOpen() {
+  if (grpCurrent < 0 || grpCurrent >= grpGroups.length) return;
+  const g = grpGroups[grpCurrent];
+  // Copy text again before opening
+  const txt = document.getElementById('grp-text').value.trim();
+  if (txt) {
+    navigator.clipboard.writeText(txt).then(() => {
+      toast('✅ Texto copiado! Abrindo grupo...');
+    }).catch(() => {});
+  }
+  window.open(g.url, '_blank');
+}
+
+function grpDone() {
+  if (grpCurrent < 0 || grpCurrent >= grpGroups.length) return;
+  grpGroups[grpCurrent].done = true;
+  grpSave();
+
+  // Find next not done
+  let next = -1;
+  for (let i = grpCurrent + 1; i < grpGroups.length; i++) {
+    if (!grpGroups[i].done) { next = i; break; }
+  }
+
+  if (next === -1) {
+    // All done!
+    grpCurrent = -1;
+    document.getElementById('grp-current-name').textContent = '🎉 Todos os grupos postados!';
+    document.getElementById('grp-current-num').textContent = grpGroups.filter(g=>g.done).length + ' grupos concluídos';
+    document.getElementById('grp-open-btn').disabled = true;
+    document.getElementById('grp-done-btn').disabled = true;
+    toast('🎉 Missão cumprida! Todos os ' + grpGroups.length + ' grupos postados!');
+  } else {
+    grpCurrent = next;
+    grpSelectCurrent();
+    toast('✅ Feito! Próximo: ' + grpGroups[grpCurrent].name);
+  }
+
+  grpRenderList();
+}
+
+function grpReset() {
+  if (!confirm('Resetar progresso de todos os grupos?')) return;
+  grpGroups.forEach(g => g.done = false);
+  grpCurrent = -1;
+  grpSession = false;
+  document.getElementById('grp-current-name').textContent = '—';
+  document.getElementById('grp-current-num').textContent = 'Selecione um grupo para começar';
+  document.getElementById('grp-open-btn').disabled = true;
+  document.getElementById('grp-done-btn').disabled = true;
+  grpSave(); grpRenderList();
+  toast('Progresso resetado!');
+}
+
+function grpCopyText() {
+  const txt = document.getElementById('grp-text').value.trim();
+  if (!txt) { toast('Escreva o texto primeiro!', true); return; }
+  navigator.clipboard.writeText(txt).then(() => toast('✅ Texto copiado!')).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    toast('✅ Texto copiado!');
+  });
+}
+
+function grpClearText() {
+  document.getElementById('grp-text').value = '';
+}
+
+function grpUpdateText() {
+  // sync with post creator if needed
+}
+
 </script>
 </body>
 </html>
